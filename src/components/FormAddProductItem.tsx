@@ -8,17 +8,8 @@ const handleChange = () => {
   return;
 };
 const FormAddProductItem = ({ productId, amount, productName }: FormProps) => {
-  const handleForm = async (formData: FormData) => {
-    const id = formData.get("productId");
-    const name = formData.get("productName");
-    const amount = formData.get("amount");
-  };
-
   return (
-    <form
-      action={handleForm}
-      className="max-w-md mx-auto bg-white p-6 rounded-xl shadow-md space-y-4"
-    >
+    <form className="max-w-md mx-auto bg-white p-6 rounded-xl shadow-md space-y-4">
       <div>
         <label className="block text-sm font-medium text-gray-700">
           Product ID

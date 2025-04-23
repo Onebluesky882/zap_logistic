@@ -1,13 +1,9 @@
-import { GlobalContext } from "@/hooks/GlobalContext";
-import { useContext } from "react";
-import { Link } from "react-router";
-
 const Header = () => {
   return (
     <header className="bg-white shadow-md fixed w-full">
       <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
         {/* Logo */}
-        <div className="text-xl font-bold text-blue-600">YourLogo</div>
+        <div className="text-xl font-bold text-blue-600">​Zap logistic</div>
 
         {/* Navigation */}
         <nav className="space-x-6 hidden md:flex text-sm text-gray-700">
