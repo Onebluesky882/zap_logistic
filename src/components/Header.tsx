@@ -7,13 +7,13 @@ const Header = () => {
 
         {/* Navigation */}
         <nav className="space-x-6 hidden md:flex text-sm text-gray-700">
-          <a href="#" className="hover:text-blue-600 transition">
+          <a href="/" className="hover:text-blue-600 transition">
             Home
           </a>
           <a href="/product-table" className="hover:text-blue-600 transition">
             Products{" "}
           </a>
-          <a href="#" className="hover:text-blue-600 transition">
+          <a href="/contact" className="hover:text-blue-600 transition">
             Contact
           </a>
         </nav>
