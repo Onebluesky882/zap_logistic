@@ -1,10 +1,10 @@
 import { ClipboardList, Home, Package, Settings, Utensils } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 
 const DashboardMonitors = () => {
   return (
-    <div className="min-h-screen  py-8 bg-gradient-to-br bg-gray-100  ">
-      <h1 className="text-2xl ml-15 sm:text-3xl font-bold mb-6 text-center text-gray-800">
+    <div className="min-h-screen  py-8 bg-gradient-to-br  bg-gray-50  ">
+      <h1 className="text-2xl sm:text-3xl font-bold mb-6 text-center text-gray-800">
         Monitoring Dashboard
       </h1>
 
@@ -21,7 +21,7 @@ const Board = () => {
   };
 
   return (
-    <div className="grid grid-cols-10 gap-2 px-2 py-4">
+    <div className="grid grid-cols-10 gap-2 px-2 py-4 ">
       {/* Left Panel (1 column) */}
 
       <div className="col-span-1 bg-amber-100 rounded p-2">
