@@ -1,5 +1,4 @@
 import supabase from "@/utils/supabase";
-import { redirect } from "react-router";
 
 const Auth = () => {
   const LoginWithGoogle = async () => {
