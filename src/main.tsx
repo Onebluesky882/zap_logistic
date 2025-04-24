@@ -6,6 +6,8 @@ import Layout from "./components/ui/Layout.tsx";
 import Homepage from "./page/Homepage.tsx";
 import ProductsTable from "./page/ProductsTable.tsx";
 import GlobalContextProvider from "./hooks/GlobalContext.tsx";
+import Login from "./page/Login.tsx";
+import Dashboard from "./page/Dashboard.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <GlobalContextProvider>
@@ -15,6 +17,8 @@ createRoot(document.getElementById("root")!).render(
           <Routes>
             <Route index element={<Homepage />} />
             <Route path="product-table" element={<ProductsTable />} />
+            <Route path="login" element={<Login />} />
+            <Route path="dashboard" element={<Dashboard />} />
           </Routes>
         </Layout>
       </BrowserRouter>

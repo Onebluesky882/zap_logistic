@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { InsertProduct } from "../../types/inventory_items";
+import { InsertProductType } from "../../types/inventory_items";
 import supabase from "@/utils/supabase";
 
 import { transformKeysToCamelCase } from "@/utils/string";
 
 const useProductsTable = () => {
-  const [addItem, setAddItem] = useState<InsertProduct[]>([]);
-  const [products, setProducts] = useState<InsertProduct[]>([]);
+  const [addItem, setAddItem] = useState<InsertProductType[]>([]);
+  const [products, setProducts] = useState<InsertProductType[]>([]);
 
   // get all product
   const getAllProducts = async () => {

@@ -1,4 +1,4 @@
-export type InsertProduct = {
+export type InsertProductType = {
   amount: number;
   createAt?: string | null;
   productId: string;

@@ -118,6 +118,12 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  .user-select-none {
+    user-select: none;
+  }
+}
 @keyframes shake {
   10%,
   90% {

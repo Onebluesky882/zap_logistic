@@ -17,7 +17,6 @@ const Homepage = () => {
           </Button>
         </a>
       </section>
-
       {/* Technology Section */}
       <section className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
         <div>
@@ -41,7 +40,6 @@ const Homepage = () => {
           className="w-full max-w-md mx-auto"
         />
       </section>
-
       {/* Global Communication Section */}
       <section className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
         <img
@@ -65,7 +63,6 @@ const Homepage = () => {
           </ul>
         </div>
       </section>
-
       {/* Why Choose Us Section */}
       <section className="max-w-6xl mx-auto text-center">
         <h2 className="text-4xl font-bold mb-8">Why Choose Zap Logistic?</h2>
@@ -107,7 +104,6 @@ const Homepage = () => {
           </div>
         </div>
       </section>
-
       {/* Call to Action */}
       <section className="max-w-4xl mx-auto text-center">
         <h2 className="text-3xl font-bold mb-6">
