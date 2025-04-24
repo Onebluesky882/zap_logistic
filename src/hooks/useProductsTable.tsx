@@ -1,24 +1,41 @@
 import { useState } from "react";
-import { InsertProductType } from "../../types/inventory_items";
+import { InsertProductType, ProductSummaryType } from "../../types/products";
 import supabase from "@/utils/supabase";
 
 import { transformKeysToCamelCase } from "@/utils/string";
 
 const useProductsTable = () => {
   const [addItem, setAddItem] = useState<InsertProductType[]>([]);
-  const [products, setProducts] = useState<InsertProductType[]>([]);
+  const [products, setProducts] = useState<ProductSummaryType[]>([]);
 
   // get all product
   const getAllProducts = async () => {
     try {
-      const { data } = await supabase.from("inventory_items").select();
+      const { data: items } = await supabase
+        .from("inventory_items")
+        .select()
+        .order("amount", { ascending: true });
 
-      if (data) {
-        const transformData = data.map((item) =>
-          transformKeysToCamelCase(item)
-        );
-        setProducts(transformData);
-      }
+      const { data: stockIn } = await supabase.from("stock_in").select();
+      const { data: stockOut } = await supabase.from("stock_out").select();
+
+      const stockInNew = new Map(
+        stockIn?.find((s) => [s.product_id, s.quantity]) ?? []
+      );
+      const stockOutNew = new Map(
+        stockOut?.find((s) => [s.product_id, s.quantity]) ?? []
+      );
+
+      const result: ProductSummaryType[] = (items ?? []).map((item) => ({
+        ...item,
+        quantityIn: stockInNew,
+        quantityOut: stockOutNew,
+      }));
+      console.log("result :", result);
+      const transform = transformKeysToCamelCase(result);
+
+      console.log("transform :", transform);
+      setProducts(transform);
     } catch (error) {
       alert("something wrong");
     }

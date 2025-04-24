@@ -1,34 +1,45 @@
-import AllProductTable from "@/components/productTable/AllproductTable";
-import InputSearchProduct from "@/components/productTable/InputSearchProduct";
+import ProductsTableProps, {
+  Head,
+} from "@/components/productTable/ProductsTableProps";
+import { TableBody } from "@/components/ui/table";
+
 import { GlobalContext } from "@/hooks/GlobalContext";
 import { useContext, useEffect } from "react";
-import useGuard from "@/hooks/useGuard";
 
 const ProductsTable = () => {
   const { products, getAllProducts } = useContext(GlobalContext).productsTable;
   const { user, Guard } = useContext(GlobalContext).guardProvider;
+
   useEffect(() => {
     getAllProducts();
     Guard();
-  }, [products]);
+  }, []);
+  const date = new Date().toLocaleDateString();
   return (
     <>
       {!user ? (
         <div>Need login</div>
       ) : (
-        <div>
-          <h1>Product Table</h1>
-          <div className="flex-1 ">
-            <InputSearchProduct />
-            {products &&
-              products.map((item) => (
-                <AllProductTable
-                  key={item.productId}
-                  productId={item.productId}
-                  productName={item.productName}
-                  amount={item.amount}
-                />
-              ))}
+        <div className="p-2">
+          <h2 className="font-extrabold text-xl p-2">วันที่ : {date}</h2>
+
+          <div className="rounded-xl shadow-lg border border-border overflow-x-auto">
+            <table className="min-w-full divide-y divide-border text-sm text-left">
+              <Head />
+
+              <TableBody>
+                {products.map((item) => (
+                  <ProductsTableProps
+                    key={item.productId}
+                    productId={item.productId}
+                    productName={item.productName}
+                    stockIn={item.amount}
+                    stockOut={item.amount}
+                    amount={item.amount}
+                  />
+                ))}
+              </TableBody>
+            </table>
           </div>
         </div>
       )}
