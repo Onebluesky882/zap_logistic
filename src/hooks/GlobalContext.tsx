@@ -1,20 +1,20 @@
 import { createContext } from "react";
-import useProductsTable, { defaultProductTable } from "./useProductsTable";
+import useInventoryByDay, { defaultInventoryByDay } from "./useInventoryByDay";
 import useGuard, { defaultGuard } from "./useGuard";
 export type GlobalContextType = {
-  productsTable: ReturnType<typeof useProductsTable>;
+  inventoryByDay: ReturnType<typeof useInventoryByDay>;
   guardProvider: ReturnType<typeof useGuard>;
 };
 export const GlobalContext = createContext<GlobalContextType>({
-  productsTable: defaultProductTable,
+  inventoryByDay: defaultInventoryByDay,
   guardProvider: defaultGuard,
 });
 
 const GlobalProvider = ({ children }: React.PropsWithChildren) => {
-  const productsTable = useProductsTable();
+  const inventoryByDay = useInventoryByDay();
   const guardProvider = useGuard();
   return (
-    <GlobalContext.Provider value={{ productsTable, guardProvider }}>
+    <GlobalContext.Provider value={{ inventoryByDay, guardProvider }}>
       {children}
     </GlobalContext.Provider>
   );

@@ -9,61 +9,79 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      inventory_items: {
+      branches: {
         Row: {
-          amount: number
-          create_at: string | null
-          product_id: string
-          product_name: string
-          update_at: string | null
+          created_at: string | null
+          id: string
+          location: string | null
+          name: string
+          updated_at: string | null
         }
         Insert: {
-          amount: number
-          create_at?: string | null
-          product_id: string
-          product_name: string
-          update_at?: string | null
+          created_at?: string | null
+          id?: string
+          location?: string | null
+          name: string
+          updated_at?: string | null
         }
         Update: {
-          amount?: number
-          create_at?: string | null
-          product_id?: string
-          product_name?: string
-          update_at?: string | null
+          created_at?: string | null
+          id?: string
+          location?: string | null
+          name?: string
+          updated_at?: string | null
         }
         Relationships: []
       }
-      quantity_in: {
+      categories: {
         Row: {
-          amount_in: number
-          branch: string
-          create_at: string | null
+          category_id: string
+          description: string | null
+          name: string
+        }
+        Insert: {
+          category_id?: string
+          description?: string | null
+          name: string
+        }
+        Update: {
+          category_id?: string
+          description?: string | null
+          name?: string
+        }
+        Relationships: []
+      }
+      inventory_by_day: {
+        Row: {
+          created_at: string | null
           id: string
+          product_amount: number | null
           product_id: string | null
-          province: string
+          quantity_in: number | null
+          quantity_out: number | null
           update_at: string | null
         }
         Insert: {
-          amount_in: number
-          branch: string
-          create_at?: string | null
+          created_at?: string | null
           id?: string
+          product_amount?: number | null
           product_id?: string | null
-          province: string
+          quantity_in?: number | null
+          quantity_out?: number | null
           update_at?: string | null
         }
         Update: {
-          amount_in?: number
-          branch?: string
-          create_at?: string | null
+          created_at?: string | null
           id?: string
+          product_amount?: number | null
           product_id?: string | null
-          province?: string
+          quantity_in?: number | null
+          quantity_out?: number | null
           update_at?: string | null
         }
         Relationships: [
           {
-            foreignKeyName: "quantity_in_product_id_fkey"
+            foreignKeyName: "inventory_by_day_product_id_fkey"
             columns: ["product_id"]
             isOneToOne: false
             referencedRelation: "inventory_items"
@@ -71,41 +89,182 @@ export type Database = {
           },
         ]
       }
-      quantity_out: {
+      inventory_items: {
         Row: {
-          amount_out: number
-          branch: string
+          amount: number | null
           create_at: string | null
-          id: string
-          product_id: string | null
-          province: string
+          description: string | null
+          product_id: string
+          product_name: string
           update_at: string | null
         }
         Insert: {
-          amount_out: number
-          branch: string
+          amount?: number | null
           create_at?: string | null
-          id?: string
-          product_id?: string | null
-          province: string
+          description?: string | null
+          product_id: string
+          product_name: string
           update_at?: string | null
         }
         Update: {
-          amount_out?: number
-          branch?: string
+          amount?: number | null
           create_at?: string | null
-          id?: string
-          product_id?: string | null
-          province?: string
+          description?: string | null
+          product_id?: string
+          product_name?: string
           update_at?: string | null
+        }
+        Relationships: []
+      }
+      product_categories: {
+        Row: {
+          category_id: string
+          product_id: string
+        }
+        Insert: {
+          category_id: string
+          product_id: string
+        }
+        Update: {
+          category_id?: string
+          product_id?: string
         }
         Relationships: [
           {
-            foreignKeyName: "quantity_out_product_id_fkey"
+            foreignKeyName: "product_categories_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "categories"
+            referencedColumns: ["category_id"]
+          },
+          {
+            foreignKeyName: "product_categories_product_id_fkey"
             columns: ["product_id"]
             isOneToOne: false
             referencedRelation: "inventory_items"
             referencedColumns: ["product_id"]
+          },
+        ]
+      }
+      providers: {
+        Row: {
+          contact_info: string | null
+          created_at: string | null
+          id: string
+          name: string
+          updated_at: string | null
+        }
+        Insert: {
+          contact_info?: string | null
+          created_at?: string | null
+          id?: string
+          name: string
+          updated_at?: string | null
+        }
+        Update: {
+          contact_info?: string | null
+          created_at?: string | null
+          id?: string
+          name?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      stock_in: {
+        Row: {
+          branch_id: string | null
+          date: string
+          product_id: string | null
+          provider_id: string | null
+          quantity: number
+          stock_id: string
+        }
+        Insert: {
+          branch_id?: string | null
+          date?: string
+          product_id?: string | null
+          provider_id?: string | null
+          quantity: number
+          stock_id?: string
+        }
+        Update: {
+          branch_id?: string | null
+          date?: string
+          product_id?: string | null
+          provider_id?: string | null
+          quantity?: number
+          stock_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "stock_in_branch_id_fkey"
+            columns: ["branch_id"]
+            isOneToOne: false
+            referencedRelation: "branches"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "stock_in_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "inventory_items"
+            referencedColumns: ["product_id"]
+          },
+          {
+            foreignKeyName: "stock_in_provider_id_fkey"
+            columns: ["provider_id"]
+            isOneToOne: false
+            referencedRelation: "providers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      stock_out: {
+        Row: {
+          branch_id: string | null
+          date: string
+          product_id: string | null
+          provider_id: string | null
+          quantity: number
+          stock_out: string
+        }
+        Insert: {
+          branch_id?: string | null
+          date?: string
+          product_id?: string | null
+          provider_id?: string | null
+          quantity: number
+          stock_out?: string
+        }
+        Update: {
+          branch_id?: string | null
+          date?: string
+          product_id?: string | null
+          provider_id?: string | null
+          quantity?: number
+          stock_out?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "stock_out_branch_id_fkey"
+            columns: ["branch_id"]
+            isOneToOne: false
+            referencedRelation: "branches"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "stock_out_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "inventory_items"
+            referencedColumns: ["product_id"]
+          },
+          {
+            foreignKeyName: "stock_out_provider_id_fkey"
+            columns: ["provider_id"]
+            isOneToOne: false
+            referencedRelation: "providers"
+            referencedColumns: ["id"]
           },
         ]
       }

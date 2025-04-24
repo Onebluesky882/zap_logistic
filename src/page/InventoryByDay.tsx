@@ -6,12 +6,13 @@ import { TableBody } from "@/components/ui/table";
 import { GlobalContext } from "@/hooks/GlobalContext";
 import { useContext, useEffect } from "react";
 
-const ProductsTable = () => {
-  const { products, getAllProducts } = useContext(GlobalContext).productsTable;
+const InventoryByDay = () => {
+  const { products, getInventoryByDate } =
+    useContext(GlobalContext).inventoryByDay;
   const { user, Guard } = useContext(GlobalContext).guardProvider;
-
+  console.log("products :", products);
   useEffect(() => {
-    getAllProducts();
+    getInventoryByDate();
     Guard();
   }, []);
   const date = new Date().toLocaleDateString();
@@ -32,10 +33,10 @@ const ProductsTable = () => {
                   <ProductsTableProps
                     key={item.productId}
                     productId={item.productId}
-                    productName={item.productName}
-                    stockIn={item.amount}
-                    stockOut={item.amount}
-                    amount={item.amount}
+                    productName={item.productsName}
+                    stockIn={item.quantityIn}
+                    stockOut={item.quantityOut}
+                    amount={item.productAmount}
                   />
                 ))}
               </TableBody>
@@ -46,4 +47,4 @@ const ProductsTable = () => {
     </>
   );
 };
-export default ProductsTable;
+export default InventoryByDay;

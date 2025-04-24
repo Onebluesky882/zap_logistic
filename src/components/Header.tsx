@@ -40,6 +40,9 @@ const Header = () => {
           </a>
           <a href="/product-table" className="hover:text-blue-600 transition">
             Products{" "}
+          </a>{" "}
+          <a href="/form-stock-in" className="hover:text-blue-600 transition">
+            stock-in{" "}
           </a>
           <a href="/dashboard" className="hover:text-blue-600 transition">
             Dashboard

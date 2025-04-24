@@ -1,7 +1,7 @@
-import useProductsTable from "@/hooks/useProductsTable";
+import useInventoryByDay from "@/hooks/useInventoryByDay";
 
 const AddProduct = () => {
-  const { insertProduct } = useProductsTable();
+  const { insertProduct } = useInventoryByDay();
   return (
     <div className="flex-1 bg-amber-200">
       <h1>addProduct</h1>
