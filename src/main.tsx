@@ -6,7 +6,7 @@ import Layout from "./components/ui/Layout.tsx";
 import Homepage from "./page/Homepage.tsx";
 import InventoryByDay from "./page/InventoryByDay.tsx";
 import GlobalContextProvider from "./hooks/GlobalContext.tsx";
-import Login from "./page/Login.tsx";
+import Login from "./page/LoginGoogle.tsx";
 import Dashboard from "./page/Dashboard.tsx";
 import AuthCallback from "./auth/callback.tsx";
 import FormStockIn from "./page/FormStockIn.tsx";

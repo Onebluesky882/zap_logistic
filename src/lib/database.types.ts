@@ -11,6 +11,7 @@ export type Database = {
     Tables: {
       branches: {
         Row: {
+          contact: string | null
           created_at: string | null
           id: string
           location: string | null
@@ -18,6 +19,7 @@ export type Database = {
           updated_at: string | null
         }
         Insert: {
+          contact?: string | null
           created_at?: string | null
           id?: string
           location?: string | null
@@ -25,6 +27,7 @@ export type Database = {
           updated_at?: string | null
         }
         Update: {
+          contact?: string | null
           created_at?: string | null
           id?: string
           location?: string | null
@@ -91,7 +94,6 @@ export type Database = {
       }
       inventory_items: {
         Row: {
-          amount: number | null
           create_at: string | null
           description: string | null
           product_id: string
@@ -99,7 +101,6 @@ export type Database = {
           update_at: string | null
         }
         Insert: {
-          amount?: number | null
           create_at?: string | null
           description?: string | null
           product_id: string
@@ -107,7 +108,6 @@ export type Database = {
           update_at?: string | null
         }
         Update: {
-          amount?: number | null
           create_at?: string | null
           description?: string | null
           product_id?: string
@@ -148,21 +148,18 @@ export type Database = {
       }
       providers: {
         Row: {
-          contact_info: string | null
           created_at: string | null
           id: string
           name: string
           updated_at: string | null
         }
         Insert: {
-          contact_info?: string | null
           created_at?: string | null
           id?: string
           name: string
           updated_at?: string | null
         }
         Update: {
-          contact_info?: string | null
           created_at?: string | null
           id?: string
           name?: string
@@ -172,37 +169,30 @@ export type Database = {
       }
       stock_in: {
         Row: {
-          branch_id: string | null
           date: string
           product_id: string | null
           provider_id: string | null
           quantity: number
           stock_id: string
+          user_id: string | null
         }
         Insert: {
-          branch_id?: string | null
           date?: string
           product_id?: string | null
           provider_id?: string | null
           quantity: number
           stock_id?: string
+          user_id?: string | null
         }
         Update: {
-          branch_id?: string | null
           date?: string
           product_id?: string | null
           provider_id?: string | null
           quantity?: number
           stock_id?: string
+          user_id?: string | null
         }
         Relationships: [
-          {
-            foreignKeyName: "stock_in_branch_id_fkey"
-            columns: ["branch_id"]
-            isOneToOne: false
-            referencedRelation: "branches"
-            referencedColumns: ["id"]
-          },
           {
             foreignKeyName: "stock_in_product_id_fkey"
             columns: ["product_id"]
@@ -217,6 +207,13 @@ export type Database = {
             referencedRelation: "providers"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "stock_in_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
         ]
       }
       stock_out: {
@@ -224,25 +221,25 @@ export type Database = {
           branch_id: string | null
           date: string
           product_id: string | null
-          provider_id: string | null
           quantity: number
           stock_out: string
+          user_id: string | null
         }
         Insert: {
           branch_id?: string | null
           date?: string
           product_id?: string | null
-          provider_id?: string | null
           quantity: number
           stock_out?: string
+          user_id?: string | null
         }
         Update: {
           branch_id?: string | null
           date?: string
           product_id?: string | null
-          provider_id?: string | null
           quantity?: number
           stock_out?: string
+          user_id?: string | null
         }
         Relationships: [
           {
@@ -260,13 +257,31 @@ export type Database = {
             referencedColumns: ["product_id"]
           },
           {
-            foreignKeyName: "stock_out_provider_id_fkey"
-            columns: ["provider_id"]
+            foreignKeyName: "stock_out_user_id_fkey"
+            columns: ["user_id"]
             isOneToOne: false
-            referencedRelation: "providers"
+            referencedRelation: "users"
             referencedColumns: ["id"]
           },
         ]
+      }
+      users: {
+        Row: {
+          created_at: string | null
+          email: string | null
+          id: string
+        }
+        Insert: {
+          created_at?: string | null
+          email?: string | null
+          id: string
+        }
+        Update: {
+          created_at?: string | null
+          email?: string | null
+          id?: string
+        }
+        Relationships: []
       }
     }
     Views: {

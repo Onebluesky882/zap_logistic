@@ -52,8 +52,8 @@ const Header = () => {
           </a>
           {user ? (
             <>
-              <Dropdown onClick={signOut} userName={user.email} />
               <Link to={"/"} />
+              <Dropdown onClick={signOut} userName={user.email} />
             </>
           ) : (
             <a
