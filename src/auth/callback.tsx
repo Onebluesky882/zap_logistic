@@ -11,8 +11,9 @@ const AuthCallback = () => {
 
     if (accessToken) {
       localStorage.setItem("access_token", accessToken);
-      // Optional: store refresh_token or expires_in
-      navigate("/dashboard"); // or wherever your app should go after login
+      window.history.replaceState(null, "", "/dashboard");
+
+      navigate("/dashboard");
     } else {
       navigate("/login");
     }
