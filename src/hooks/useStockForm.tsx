@@ -4,14 +4,8 @@ import { StockInRecord, StockOutRecord } from "../../types/formType";
 
 const useStockForm = () => {
   const [mode, setMode] = useState<"in" | "out">("in");
-  const [formStockIn, setFormStockIn] = useState<StockInRecord>({
-    product_id: "",
-    quantity_in: 0,
-  });
-  const [formStockOut, setFormStockOUt] = useState<StockOutRecord>({
-    product_id: "",
-    quantity_out: 0,
-  });
+  const [formStockIn, setFormStockIn] = useState<StockInRecord>();
+  const [formStockOut, setFormStockOUt] = useState<StockOutRecord>();
 
   const StockInRecords = async () => {
     // form --> store data to state form --> push to db

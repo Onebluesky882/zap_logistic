@@ -1,7 +1,7 @@
-import Auth from "@/auth/login";
+import LoginWithGoogle from "@/auth/loginWithGoogle";
 import LoginGoogle from "@/components/Login";
 const Login = () => {
-  const { LoginWithGoogle } = Auth();
-  return <LoginGoogle onClick={LoginWithGoogle} />;
+  const { auth } = LoginWithGoogle();
+  return <LoginGoogle onClick={auth} />;
 };
 export default Login;

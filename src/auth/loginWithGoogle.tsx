@@ -1,13 +1,13 @@
 import supabase from "@/utils/supabase";
 
-const Auth = () => {
-  const LoginWithGoogle = async () => {
+const LoginWithGoogle = () => {
+  const auth = async () => {
     await supabase.auth.signInWithOAuth({
       provider: "google",
       options: { redirectTo: "/dashboard" },
     });
   };
 
-  return { LoginWithGoogle };
+  return { auth };
 };
-export default Auth;
+export default LoginWithGoogle;
