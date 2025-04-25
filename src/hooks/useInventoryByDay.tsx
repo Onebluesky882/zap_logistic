@@ -1,12 +1,10 @@
 import { useState } from "react";
-import { InsertProductType } from "../../types/products";
 import supabase from "@/utils/supabase";
 
 import { transformKeysToCamelCase } from "@/utils/string";
-import { InventoryDayType } from "types/inventory_items";
+import { InventoryDayType } from "../../types/inventoryType";
 
 const useInventoryByDay = () => {
-  const [addItem, setAddItem] = useState<InsertProductType[]>([]);
   const [products, setProducts] = useState<InventoryDayType[]>([]);
 
   // get all product
@@ -35,30 +33,14 @@ const useInventoryByDay = () => {
 
   // get product by id or name
 
-  // insert
-  const insertProduct = async () => {
-    // get data from product
-    // todo
-    // const localData = items.map((item) => transformKeysToSnakeCase(item));
-
-    // send
-    const { error } = await supabase.from("inventory_items").insert(addItem);
-    if (error) {
-      console.log("insert error", error);
-    } else {
-      console.log("successful");
-    }
-  };
-
   // update  Product
 
   // delete product s
 
   return {
     products,
-    setAddItem,
     getInventoryByDate,
-    insertProduct,
+
     setProducts,
   };
 };
@@ -66,7 +48,6 @@ export default useInventoryByDay;
 
 export const defaultInventoryByDay = {
   products: [],
-  setAddItem: () => {}, // provide dummy no-op functions
   setProducts: () => {},
   getInventoryByDate: async () => {},
   insertProduct: async () => {},

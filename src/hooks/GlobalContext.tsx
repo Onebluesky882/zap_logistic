@@ -13,6 +13,7 @@ export const GlobalContext = createContext<GlobalContextType>({
 const GlobalProvider = ({ children }: React.PropsWithChildren) => {
   const inventoryByDay = useInventoryByDay();
   const guardProvider = useGuard();
+
   return (
     <GlobalContext.Provider value={{ inventoryByDay, guardProvider }}>
       {children}

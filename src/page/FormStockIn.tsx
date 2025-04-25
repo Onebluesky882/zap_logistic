@@ -1,59 +1,61 @@
-import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+import useStockForm from "@/hooks/useStockForm";
 import { useForm } from "react-hook-form";
+import { StockInRecord } from "types/formType";
 
-type FormValues = {
-  name: string;
-};
-const FormStockIn = () => {
-  const form = useForm({
+export default function StockInForm() {
+  const { formStockIn, setFormStockIn } = useStockForm();
+  const { register, handleSubmit } = useForm<StockInRecord>({
     defaultValues: {
-      name: "", // ← or any initial value
+      product_id: "",
+      quantity_in: null,
     },
   });
 
-  const onSubmit = (data: FormValues) => {
-    console.log("Submitted:", data);
+  const onSubmit = (data: StockInRecord) => {
+    console.log("Submitted:", {
+      ...data,
+      quantity_in: data.quantity_in ? Number(data.quantity_in) : null,
+    });
+
+    setFormStockIn(data);
+    console.log(formStockIn);
   };
 
   return (
-    <div className="p-4 max-w-md mx-auto">
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-          <FormField
-            control={form.control}
-            name="name"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>ชื่อสินค้า</FormLabel>
-                <FormControl>
-                  <Input placeholder="ชื่อสินค้า..." {...field} />
-                </FormControl>
-                <FormControl>
-                  <Input placeholder="จำนวน" {...field} />
-                </FormControl>
-                <FormDescription>
-                  กรอกชื่อสินค้าที่ต้องการบันทึก
-                </FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="max-w-sm mx-auto p-6 bg-white rounded-lg shadow space-y-4"
+    >
+      <h2 className="text-xl font-semibold">Stock In</h2>
 
-          <Button type="submit">บันทึก</Button>
-        </form>
-      </Form>
-    </div>
+      {/* Product ID */}
+      <div>
+        <label className="block text-sm font-medium mb-1">Product ID</label>
+        <input
+          type="text"
+          {...register("product_id")}
+          placeholder="Enter product ID"
+          className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
+
+      {/* Quantity In */}
+      <div>
+        <label className="block text-sm font-medium mb-1">Quantity In</label>
+        <input
+          type="number"
+          {...register("quantity_in", { valueAsNumber: true })}
+          placeholder="Enter quantity"
+          className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
+
+      <button
+        type="submit"
+        className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+      >
+        Submit
+      </button>
+    </form>
   );
-};
-
-export default FormStockIn;
+}
