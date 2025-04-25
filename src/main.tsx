@@ -9,6 +9,7 @@ import GlobalContextProvider from "./hooks/GlobalContext.tsx";
 import Login from "./page/Login.tsx";
 import Dashboard from "./page/Dashboard.tsx";
 import FormStockIn from "./page/FormStockIn.tsx";
+import AuthCallback from "./auth/callback.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <GlobalContextProvider>
@@ -21,6 +22,7 @@ createRoot(document.getElementById("root")!).render(
             <Route path="login" element={<Login />} />
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="form-stock-in" element={<FormStockIn />} />
+            <Route path="auth/callback" element={<AuthCallback />} />
             {/* <Route path="form-stock-in" element={<FormStockIn />} /> */}
           </Routes>
         </Layout>
