@@ -2,10 +2,7 @@ import supabase from "@/utils/supabase";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { IoEyeSharp } from "react-icons/io5";
-import { FaRegEyeSlash } from "react-icons/fa6";
 import SignUpForm from "@/components/SignUpform";
-import { register } from "module";
 type Register = {
   email: string;
   password: string;

@@ -1,13 +1,10 @@
 import { GlobalContext } from "@/hooks/GlobalContext";
-import useBranches from "@/hooks/useBranches";
-import useStockForm from "@/hooks/useStockForm";
 import { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { StockInRecord } from "types/formType";
 
 export default function StockInForm() {
-  const { branches, readAllBranches } =
-    useContext(GlobalContext).branchProvider;
+  const { readAllBranches } = useContext(GlobalContext).branchProvider;
 
   useEffect(() => {
     readAllBranches();

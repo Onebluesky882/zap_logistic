@@ -1,5 +1,3 @@
-import useInventoryByDay from "@/hooks/useInventoryByDay";
-
 const AddProduct = () => {
   return (
     <div className="flex-1 bg-amber-200">

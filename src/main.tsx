@@ -14,8 +14,8 @@ import FormStockOut from "./page/FormStockOut.tsx";
 import UpdateProfile from "./page/UpdateProfile.tsx";
 import Branches from "./page/Branches.tsx";
 import WaitingConfirmEmail from "./page/WaitingConfirmEmail.tsx";
-import LoginWithEmail from "./page/loginWithEmail.tsx";
 import RegisterForm from "./page/SignupWithEmail.tsx";
+import LoginWithEmail from "./page/loginWithEmail.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <GlobalContextProvider>
