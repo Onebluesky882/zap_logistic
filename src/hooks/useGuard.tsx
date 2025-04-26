@@ -12,6 +12,9 @@ const useGuard = () => {
     if (user) {
       setUser(user);
     }
+
+    // TODO: add redirect to '/login'
+    // https://reactrouter.com/api/utils/redirect#redirect
   };
   const signOut = async () => {
     await supabase.auth.signOut();
